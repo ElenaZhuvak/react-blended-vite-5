@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { getCurrency } from './redux/currency/operations';
+import { setDefaultCurrency } from './redux/currency/slice';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ export const App = () => {
 
     function error(err) {
       console.warn(`ERROR(${err.code}): ${err.message}`);
+      dispatch(setDefaultCurrency('USD'));
     }
 
     window.navigator.geolocation.getCurrentPosition(success, error, options);
